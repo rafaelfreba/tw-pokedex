@@ -8,29 +8,32 @@
 </head>
 <body>
     
-    <div id="app">     
-        {{ title | upper | reverse | cut(2,7)}}
+    <div id="app">   
+        
+       <div is="my-component"></div>  
+
+       <my-component></my-component>
+
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
-    <script>
-       var app = new Vue({
-        el: '#app',
-        data: {
-            title: 'Treinaweb'
-        },
-        filters: {
-            upper: function(text){
-                return text.toUpperCase()
-            },
-            reverse: function(text){
-                return text.split('').reverse().join('')
-            }, 
-            cut: function(text, index1, index2){
-                return text.substring(index1, index2)
+    <script>        
+
+        Vue.component('my-component', {
+            template: `<div>Hello! {{ text }}</div>`,
+            data: function(){
+                return { text:'Bye!!' }
             }
-        }
+        })
+
+       var app = new Vue({
+            el: '#app',
+            data: {
+                text: 'Treinaweb'
+            }
+            
        })
+
     </script>
 </body>
 </html>
