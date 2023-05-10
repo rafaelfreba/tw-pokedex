@@ -9,24 +9,31 @@
 <body>
     
     <div id="app">   
-       <my-component ref="mc"></my-component>
+     
+       My Number: {{ myNumber }}
+       <button @click="myNumber++">Click Me</button>
+       <br>
+       {{ myList }}
 
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
     <script>        
 
-        Vue.component('my-component', {
-            template: `<div>Hello! {{ text }}</div>`,
-            data: function(){
-                return { text:'Bye!!' }
-            }
-        })
-
        var app = new Vue({
             el: '#app',
             data: {
-                text: 'Treinaweb'
+              myNumber: 1
+            },
+            computed: {
+                myList: function(){
+                    var number = this.myNumber
+                    var list = []
+                    while(number--){
+                        list.push(number)
+                    }
+                    return list
+                }
             }
             
        })
